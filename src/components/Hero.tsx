@@ -57,7 +57,7 @@ export default function Hero() {
       </AnimatedSection>
 
       {/* Scroll indicator */}
-      <AnimatedSection animation="bounce-soft" className="absolute bottom-8 left-1/2 -translate-x-1/2">
+      <AnimatedSection animation="slide-up" className="absolute bottom-8 left-1/2 -translate-x-1/2">
         <div className="flex flex-col items-center gap-2">
           <span className="text-sm text-gray-400">Scroll to explore</span>
           <ChevronDown
