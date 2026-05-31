@@ -71,10 +71,16 @@ export default function Navbar() {
               transition={{ type: 'spring', stiffness: 400, damping: 10 }}
               onClick={() => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              <motion.div 
+              <motion.div
                 className="w-10 h-10 rounded-lg bg-gradient-to-r from-cyber-accent to-cyber-accent-secondary flex items-center justify-center font-bold text-black relative shadow-lg shadow-cyber-accent/30"
-                animate={floatingVariants.animate}
-                transition={floatingVariants.animate.transition}
+                animate={{
+                  y: [0, -5, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
               >
                 <motion.span
                   className="text-lg font-bold"
