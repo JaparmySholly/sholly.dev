@@ -88,65 +88,84 @@ function ProjectCard({
         <div
           className={`relative h-full p-8 rounded-2xl border backdrop-blur-md transition-all duration-500 ease-smooth ${colorConfig.border} ${colorConfig.glow} bg-cyber-card hover:bg-cyber-card-lg`}
         >
-          {/* Title */}
-          <h3 className="text-xl font-bold mb-3 text-white">
-            {project.title}
-          </h3>
+          {/* Content Wrapper with proper z-index */}
+          <div className="relative z-10">
+            {/* Title */}
+            <h3 className="text-xl font-bold mb-3 text-white">
+              {project.title}
+            </h3>
 
-          {/* Description */}
-          <p className="text-sm text-gray-400 mb-6 leading-relaxed">
-            {project.description}
-          </p>
+            {/* Description */}
+            <p className="text-sm text-gray-400 mb-6 leading-relaxed">
+              {project.description}
+            </p>
 
-          {/* Technology Badges */}
-          <div className="flex flex-wrap gap-2 mb-6">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className={`text-xs px-3 py-1.5 rounded-full font-medium border transition-all duration-300 ${colorConfig.badge} ${colorConfig.badgeHover}`}
+            {/* Technology Badges */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className={`text-xs px-3 py-1.5 rounded-full font-medium border transition-all duration-300 ${colorConfig.badge} ${colorConfig.badgeHover}`}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            {/* Divider */}
+            <div
+              className={`h-px mb-6 transition-all duration-300 ${
+                accentColor === 'cyber-accent'
+                  ? 'bg-gradient-to-r from-cyber-accent/30 to-transparent'
+                  : accentColor === 'cyber-accent-tertiary'
+                    ? 'bg-gradient-to-r from-cyber-accent-tertiary/30 to-transparent'
+                    : 'bg-gradient-to-r from-cyber-accent-secondary/30 to-transparent'
+              }`}
+            ></div>
+
+            {/* Action Buttons */}
+            <div className="flex gap-4 items-center relative z-20">
+              <a
+                href={project.link || '#'}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 hover:translate-y-[-2px] cursor-pointer ${
+                  accentColor === 'cyber-accent'
+                    ? 'text-cyber-accent hover:text-cyber-accent hover:bg-cyber-accent/10 hover:shadow-glow-cyan'
+                    : accentColor === 'cyber-accent-tertiary'
+                      ? 'text-cyber-accent-tertiary hover:text-cyber-accent-tertiary hover:bg-cyber-accent-tertiary/10 hover:shadow-glow-blue'
+                      : 'text-cyber-accent-secondary hover:text-cyber-accent-secondary hover:bg-cyber-accent-secondary/10 hover:shadow-glow-purple'
+                }`}
+                aria-label="View live demo"
+                title="Open live demo in new tab"
               >
-                {tag}
-              </span>
-            ))}
+                <ExternalLink size={18} />
+                <span>Live Demo</span>
+              </a>
+
+              <a
+                href={project.github || '#'}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 hover:translate-y-[-2px] cursor-pointer ${
+                  accentColor === 'cyber-accent'
+                    ? 'text-cyber-accent hover:text-cyber-accent hover:bg-cyber-accent/10 hover:shadow-glow-cyan'
+                    : accentColor === 'cyber-accent-tertiary'
+                      ? 'text-cyber-accent-tertiary hover:text-cyber-accent-tertiary hover:bg-cyber-accent-tertiary/10 hover:shadow-glow-blue'
+                      : 'text-cyber-accent-secondary hover:text-cyber-accent-secondary hover:bg-cyber-accent-secondary/10 hover:shadow-glow-purple'
+                }`}
+                aria-label="View source code on GitHub"
+                title="Open GitHub repository in new tab"
+              >
+                <Github size={18} />
+                <span>GitHub</span>
+              </a>
+            </div>
           </div>
 
-          {/* Divider */}
+          {/* Gradient Border Shimmer effect - must not block clicks */}
           <div
-            className={`h-px mb-6 transition-all duration-300 ${
-              accentColor === 'cyber-accent'
-                ? 'bg-gradient-to-r from-cyber-accent/30 to-transparent'
-                : accentColor === 'cyber-accent-tertiary'
-                  ? 'bg-gradient-to-r from-cyber-accent-tertiary/30 to-transparent'
-                  : 'bg-gradient-to-r from-cyber-accent-secondary/30 to-transparent'
-            }`}
-          ></div>
-
-          {/* Action Buttons */}
-          <div className="flex gap-6 items-center">
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`flex items-center gap-2 font-medium text-sm transition-colors duration-300 ${colorConfig.button}`}
-            >
-              <span>View</span>
-              <ExternalLink size={18} />
-            </a>
-
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`flex items-center gap-2 font-medium text-sm transition-colors duration-300 ${colorConfig.button}`}
-            >
-              <span>Code</span>
-              <Github size={18} />
-            </a>
-          </div>
-
-          {/* Gradient Border Shimmer effect */}
-          <div
-            className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500 rounded-2xl"
+            className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500 rounded-2xl pointer-events-none"
             style={{
               background: `linear-gradient(135deg, ${
                 accentColor === 'cyber-accent'
