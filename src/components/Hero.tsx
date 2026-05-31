@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="section relative min-h-screen flex flex-col items-center justify-center pt-24"
+      className="section relative min-h-[90vh] md:min-h-screen flex flex-col items-center justify-center pt-24"
     >
       {/* Background gradient orbs */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -32,8 +32,7 @@ export default function Hero() {
           Cybersecurity Engineer • Academic Researcher • Software Developer
         </p>
 
-        <p className="text-gray-400 mb-12 max-w-2xl mx-auto">
-          I build secure systems, conduct threat hunting, and develop innovative
+        <p className="text-gray-400 mb-8 md:mb-12 max-w-2xl mx-auto px-4 md:px-0 leading-relaxed">          I build secure systems, conduct threat hunting, and develop innovative
           security solutions. Passionate about protecting systems and uncovering vulnerabilities.
           <br />
           I help students and organizations navigate academic challenges, cybersecurity concepts, and software development projects through research-driven and innovative solutions.
@@ -56,8 +55,11 @@ export default function Hero() {
         </div>
       </AnimatedSection>
 
-      {/* Scroll indicator */}
-      <AnimatedSection animation="slide-up" className="absolute bottom-8 left-1/2 -translate-x-1/2">
+      {/* Scroll indicator - Desktop only */}
+      <AnimatedSection
+        animation="slide-up"
+        className="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
         <div className="flex flex-col items-center gap-2">
           <span className="text-sm text-gray-400">Scroll to explore</span>
           <ChevronDown

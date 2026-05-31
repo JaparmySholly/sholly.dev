@@ -40,8 +40,17 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = () => {
+  const handleNavClick = (sectionId: string) => {
     setIsOpen(false);
+
+    const element = document.getElementById(sectionId);
+
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
   };
 
   return (
@@ -100,7 +109,7 @@ export default function Navbar() {
                 </motion.span>
               </motion.div>
               <motion.span 
-                className="text-lg font-bold gradient-text hidden sm:inline"
+              className="text-lg font-bold gradient-text"                
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2, type: 'spring', stiffness: 400 }}
@@ -124,7 +133,10 @@ export default function Navbar() {
                 >
                   <motion.a
                     href={item.href}
-                    onClick={handleNavClick}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(item.id);
+                    }}
                     className={`relative px-3 py-2 text-sm font-medium transition-colors duration-300 ${
                       activeSection === item.id
                         ? 'text-cyber-accent'
@@ -174,7 +186,7 @@ export default function Navbar() {
 
             {/* Mobile Menu Button */}
             <motion.button
-              className="md:hidden p-2 rounded-lg glass-navbar-mobile-btn transition-all duration-300"
+              className="md:hidden p-1.5 rounded-lg glass-navbar-mobile-btn transition-all duration-300"
               onClick={() => setIsOpen(!isOpen)}
               whileTap={{ scale: 0.95 }}
               transition={{ type: 'spring', stiffness: 400, damping: 10 }}
@@ -198,17 +210,20 @@ export default function Navbar() {
         {/* Mobile Menu */}
         <motion.div
           initial={{ opacity: 0, height: 0 }}
-          animate={isOpen ? { opacity: 1, height: 'auto' } : { opacity: 0, height: 0 }}
+          animate={
+            isOpen
+              ? { opacity: 1, height: 'auto', y: 0 }
+              : { opacity: 0, height: 0, y: -10 }
+          }
           exit={{ opacity: 0, height: 0 }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-          className="md:hidden border-t border-cyber-accent/20"
-          style={{
+          className="md:hidden bg-cyber-dark/95 border-t border-cyber-accent/20 shadow-xl"          style={{
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
           }}
         >
           <motion.div 
-            className="px-4 py-4 space-y-2"
+            className="px-4 py-3 space-y-1"
             initial="hidden"
             animate={isOpen ? 'visible' : 'hidden'}
             variants={containerVariants}
@@ -217,7 +232,10 @@ export default function Navbar() {
               <motion.a
                 key={item.label}
                 href={item.href}
-                onClick={handleNavClick}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(item.id);
+                }}
                 className={`flex items-center px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 relative group ${
                   activeSection === item.id
                     ? 'text-cyber-accent bg-cyber-accent/10'
