@@ -7,6 +7,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import BackgroundOrbs from "@/components/BackgroundOrbs";
 import PageWrapper from "@/components/PageWrapper";
+import Blog from '@/components/Blog';
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
           <Statistics />
           <Skills />
           <Projects />
+          <Blog />
           <Contact />
         </main>
       </PageWrapper>
