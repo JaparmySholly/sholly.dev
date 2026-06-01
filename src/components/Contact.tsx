@@ -72,24 +72,24 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="section">
+    <section id="contact" className="section px-4 md:px-0">
       <AnimatedSection animation="slide-up">
-        <div className="max-w-2xl mx-auto">
-          <div className="mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-cyber-accent to-cyber-accent-secondary rounded-full"></div>
-            <p className="text-gray-400 mt-6">
+        <div className="max-w-2xl mx-auto w-full">
+          <div className="mb-8 md:mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">Get In Touch</h2>
+            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-cyber-accent to-cyber-accent-secondary rounded-full"></div>
+            <p className="text-gray-400 mt-4 md:mt-6 text-sm md:text-base">
               Have a project in mind or just want to say hello? I'd love to hear
               from you. Feel free to reach out!
             </p>
           </div>
 
-          <Card className="p-8 md:p-12">
+          <Card className="p-6 sm:p-8 md:p-12">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-gray-300 mb-2"
+                  className="block text-xs sm:text-sm font-medium text-gray-300 mb-2"
                 >
                   Your Name
                 </label>
@@ -101,14 +101,14 @@ export default function Contact() {
                   onChange={handleChange}
                   placeholder="John Doe"
                   required
-                  className="w-full px-5 py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                  className="w-full px-4 sm:px-5 py-3 sm:py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm sm:text-base"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-300 mb-2"
+                  className="block text-xs sm:text-sm font-medium text-gray-300 mb-2"
                 >
                   Email Address
                 </label>
@@ -120,14 +120,14 @@ export default function Contact() {
                   onChange={handleChange}
                   placeholder="john@example.com"
                   required
-                  className="w-full px-5 py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                  className="w-full px-4 sm:px-5 py-3 sm:py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm sm:text-base"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium text-gray-300 mb-2"
+                  className="block text-xs sm:text-sm font-medium text-gray-300 mb-2"
                 >
                   Message
                 </label>
@@ -139,18 +139,18 @@ export default function Contact() {
                   placeholder="Your message here..."
                   rows={5}
                   required
-                  className="w-full px-5 py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none"
+                  className="w-full px-4 sm:px-5 py-3 sm:py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none text-sm sm:text-base"
                 />
               </div>
 
               {submitStatus === 'success' && (
-                <div className="p-4 rounded-xl bg-green-500/10 border border-green-500/30 text-green-400 text-sm">
+                <div className="p-3 sm:p-4 rounded-xl bg-green-500/10 border border-green-500/30 text-green-400 text-xs sm:text-sm">
                   ✓ Message sent successfully! I'll get back to you soon.
                 </div>
               )}
 
               {submitStatus === 'error' && (
-                <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
+                <div className="p-3 sm:p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs sm:text-sm">
                   ✗ Something went wrong. Please try again.
                 </div>
               )}
@@ -159,7 +159,7 @@ export default function Contact() {
                 type="submit"
                 variant="primary"
                 size="lg"
-                className="w-full"
+                className="w-full text-sm sm:text-base py-3 sm:py-4"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? 'Sending...' : 'Send Message'}

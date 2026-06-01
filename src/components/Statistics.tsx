@@ -185,7 +185,7 @@ function StatCard({
 
 export default function Statistics() {
   return (
-    <section id="statistics" className="section py-24 relative">
+    <section id="statistics" className="section py-16 md:py-24 relative px-4 md:px-0">
       {/* Subtle background effects */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-cyber-accent/5 rounded-full blur-3xl"></div>
@@ -193,20 +193,20 @@ export default function Statistics() {
       </div>
 
       {/* Header */}
-      <AnimatedSection animation="slide-up" className="mb-16">
+      <AnimatedSection animation="slide-up" className="mb-12 md:mb-16">
         <div className="text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Impact & Achievements</h2>
-          <div className="flex justify-center mb-6">
-            <div className="w-20 h-1 bg-gradient-to-r from-cyber-accent to-cyber-accent-secondary rounded-full"></div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">Impact & Achievements</h2>
+          <div className="flex justify-center mb-4 md:mb-6">
+            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-cyber-accent to-cyber-accent-secondary rounded-full"></div>
           </div>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto px-2">
             Driving excellence in cybersecurity, research, and software development
           </p>
         </div>
       </AnimatedSection>
 
       {/* Statistics Grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         {stats.map((stat, index) => (
           <StatCard
             key={stat.id}

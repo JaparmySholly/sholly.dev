@@ -189,17 +189,17 @@ function SkillCard({
 
 export default function Skills() {
   return (
-    <section id="skills" className="section">
+    <section id="skills" className="section px-4 md:px-0">
       {/* Header */}
       <AnimatedSection animation="slide-up">
-        <div className="mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Skills & Expertise</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-cyber-accent to-cyber-accent-secondary rounded-full"></div>
+        <div className="mb-12 md:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">Skills & Expertise</h2>
+          <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-cyber-accent to-cyber-accent-secondary rounded-full"></div>
         </div>
       </AnimatedSection>
 
       {/* Skills Grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
         {skillCategories.map((category, index) => (
           <SkillCard
             key={category.id}

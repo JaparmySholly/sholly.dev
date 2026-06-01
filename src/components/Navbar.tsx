@@ -46,10 +46,16 @@ export default function Navbar() {
     const element = document.getElementById(sectionId);
 
     if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
+      // Close menu before scrolling
+      setIsOpen(false);
+      
+      // Use setTimeout to ensure menu closes before scroll
+      setTimeout(() => {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }, 100);
     }
   };
 
@@ -70,18 +76,18 @@ export default function Navbar() {
         animate="visible"
         variants={slideDownVariants}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             
             {/* Brand Logo */}
             <motion.div 
-              className="flex items-center gap-3 cursor-pointer flex-shrink-0"
+              className="flex items-center gap-2 md:gap-3 cursor-pointer flex-shrink-0 min-w-max"
               whileHover={{ scale: 1.05 }}
               transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-              onClick={() => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => handleNavClick('home')}
             >
               <motion.div
-                className="w-10 h-10 rounded-lg bg-gradient-to-r from-cyber-accent to-cyber-accent-secondary flex items-center justify-center font-bold text-black relative shadow-lg shadow-cyber-accent/30"
+                className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-to-r from-cyber-accent to-cyber-accent-secondary flex items-center justify-center font-bold text-black text-xs md:text-sm relative shadow-lg shadow-cyber-accent/30 flex-shrink-0"
                 animate={{
                   y: [0, -5, 0],
                 }}
@@ -92,7 +98,7 @@ export default function Navbar() {
                 }}
               >
                 <motion.span
-                  className="text-lg font-bold"
+                  className="font-bold"
                   animate={{
                     textShadow: [
                       '0 0 0px rgba(6, 182, 212, 0.5)',
@@ -109,7 +115,7 @@ export default function Navbar() {
                 </motion.span>
               </motion.div>
               <motion.span 
-              className="text-lg font-bold gradient-text"                
+              className="text-sm md:text-lg font-bold gradient-text hidden xs:inline-block"                
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2, type: 'spring', stiffness: 400 }}
@@ -120,7 +126,7 @@ export default function Navbar() {
 
             {/* Desktop Navigation Menu */}
             <motion.div 
-              className="hidden md:flex items-center gap-2 lg:gap-4"
+              className="hidden md:flex items-center gap-1 lg:gap-2"
               initial="hidden"
               animate="visible"
               variants={containerVariants}
@@ -137,7 +143,7 @@ export default function Navbar() {
                       e.preventDefault();
                       handleNavClick(item.id);
                     }}
-                    className={`relative px-3 py-2 text-sm font-medium transition-colors duration-300 ${
+                    className={`relative px-3 py-2 text-xs lg:text-sm font-medium transition-colors duration-300 whitespace-nowrap ${
                       activeSection === item.id
                         ? 'text-cyber-accent'
                         : 'text-gray-300 hover:text-cyber-accent'
@@ -165,7 +171,7 @@ export default function Navbar() {
 
             {/* Desktop CTA Button */}
             <motion.div 
-              className="hidden md:flex gap-3"
+              className="hidden md:flex gap-2 lg:gap-3 ml-2"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4, type: 'spring', stiffness: 400 }}
@@ -178,7 +184,7 @@ export default function Navbar() {
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 10 }}
               >
-                <Button variant="outline" size="sm" className="glass-navbar-btn">
+                <Button variant="outline" size="sm" className="glass-navbar-btn text-xs lg:text-sm">
                   Resume
                 </Button>
               </motion.a>
@@ -186,7 +192,7 @@ export default function Navbar() {
 
             {/* Mobile Menu Button */}
             <motion.button
-              className="md:hidden p-1.5 rounded-lg glass-navbar-mobile-btn transition-all duration-300"
+              className="md:hidden p-1.5 rounded-lg glass-navbar-mobile-btn transition-all duration-300 ml-auto flex-shrink-0"
               onClick={() => setIsOpen(!isOpen)}
               whileTap={{ scale: 0.95 }}
               transition={{ type: 'spring', stiffness: 400, damping: 10 }}
@@ -198,9 +204,9 @@ export default function Navbar() {
                 transition={{ type: 'spring', stiffness: 300, damping: 15 }}
               >
                 {isOpen ? (
-                  <X size={24} className="text-cyber-accent" strokeWidth={2} />
+                  <X size={20} className="text-cyber-accent" strokeWidth={2} />
                 ) : (
-                  <Menu size={24} className="text-cyber-accent" strokeWidth={2} />
+                  <Menu size={20} className="text-cyber-accent" strokeWidth={2} />
                 )}
               </motion.div>
             </motion.button>
@@ -217,13 +223,14 @@ export default function Navbar() {
           }
           exit={{ opacity: 0, height: 0 }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-          className="md:hidden bg-cyber-dark/95 border-t border-cyber-accent/20 shadow-xl"          style={{
+          className="md:hidden bg-cyber-dark/95 border-t border-cyber-accent/20 shadow-xl overflow-hidden"          
+          style={{
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
           }}
         >
           <motion.div 
-            className="px-4 py-3 space-y-1"
+            className="px-3 py-2 sm:px-4 sm:py-3 space-y-1"
             initial="hidden"
             animate={isOpen ? 'visible' : 'hidden'}
             variants={containerVariants}
@@ -236,7 +243,7 @@ export default function Navbar() {
                   e.preventDefault();
                   handleNavClick(item.id);
                 }}
-                className={`flex items-center px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 relative group ${
+                className={`flex items-center px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg text-sm font-medium transition-all duration-300 relative group ${
                   activeSection === item.id
                     ? 'text-cyber-accent bg-cyber-accent/10'
                     : 'text-gray-300 hover:text-cyber-accent hover:bg-cyber-accent/5'
@@ -248,7 +255,7 @@ export default function Navbar() {
               >
                 {/* Active indicator dot */}
                 <motion.div
-                  className="mr-3 w-2 h-2 rounded-full bg-gradient-to-r from-cyber-accent to-purple-500"
+                  className="mr-2 sm:mr-3 w-2 h-2 rounded-full bg-gradient-to-r from-cyber-accent to-purple-500 flex-shrink-0"
                   animate={{
                     scale: activeSection === item.id ? 1 : 0,
                     opacity: activeSection === item.id ? 1 : 0,
@@ -260,7 +267,7 @@ export default function Navbar() {
             ))}
             
             <motion.div
-              className="pt-4 border-t border-cyber-accent/20 mt-4"
+              className="pt-3 sm:pt-4 border-t border-cyber-accent/20 mt-3"
               variants={itemVariants}
               custom={navItems.length}
             >
@@ -272,7 +279,7 @@ export default function Navbar() {
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: 'spring', stiffness: 400 }}
               >
-                <Button variant="outline" size="sm" className="w-full glass-navbar-btn">
+                <Button variant="outline" size="sm" className="w-full glass-navbar-btn text-xs sm:text-sm">
                   Resume
                 </Button>
               </motion.a>
@@ -281,8 +288,8 @@ export default function Navbar() {
         </motion.div>
       </motion.nav>
 
-      {/* Navbar spacing compensation */}
-      <div className="h-16" />
+      {/* Navbar spacing compensation - responsive */}
+      <div className="h-16 flex-shrink-0" />
     </>
   );
 }

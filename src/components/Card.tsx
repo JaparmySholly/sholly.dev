@@ -21,7 +21,7 @@ export default function Card({
       whileHover={hover ? { scale: 1.02 } : undefined}
       whileTap={hover ? { scale: 0.995 } : undefined}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      className={`glass rounded-2xl p:6 p-6 transition-smooth ${
+      className={`glass rounded-2xl p-6 transition-smooth ${
         hover ? 'hover-glow hover:shadow-xl' : ''
       } ${className}`}
     >
@@ -29,3 +29,4 @@ export default function Card({
     </motion.div>
   );
 }
+
