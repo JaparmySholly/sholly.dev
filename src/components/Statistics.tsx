@@ -109,7 +109,7 @@ function StatCard({
     >
       <div className="group h-full">
         <div
-          className={`relative h-full p-8 rounded-2xl border backdrop-blur-md transition-all duration-500 ease-smooth ${config.border} ${config.hover} bg-cyber-card hover:bg-cyber-card-lg overflow-hidden`}
+          className={`relative h-full p-6 rounded-2xl border backdrop-blur-md transition-all duration-500 ease-smooth ${config.border} ${config.hover} bg-cyber-card hover:bg-cyber-card-lg overflow-hidden`}
         >
           {/* Animated background gradient */}
           <div
@@ -138,12 +138,12 @@ function StatCard({
           {/* Content */}
           <div className="relative z-10 flex flex-col h-full">
             {/* Icon */}
-            <div className="mb-6">
+            <div className="mb-4">
               <div
-                className={`inline-flex p-3 rounded-lg transition-all duration-300 group-hover:scale-125 group-hover:rotate-12 ${config.iconBg}`}
+                className={`inline-flex p-2 sm:p-3 rounded-lg transition-all duration-300 group-hover:scale-125 group-hover:rotate-12 ${config.iconBg}`}
               >
                 <Icon
-                  size={32}
+                  size={24}
                   className={`transition-all duration-300 ${config.textAccent}`}
                 />
               </div>
@@ -151,10 +151,10 @@ function StatCard({
 
             {/* Value and Label */}
             <div className="flex-1 mb-4">
-              <div className={`text-5xl md:text-6xl font-bold mb-3 transition-all duration-300 ${config.textAccent}`}>
+              <div className={`text-4xl sm:text-5xl md:text-6xl font-bold mb-2 transition-all duration-300 ${config.textAccent}`}>
                 {value}
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2 leading-tight">
+              <h3 className="text-base sm:text-lg font-semibold text-white mb-2 leading-tight">
                 {label}
               </h3>
             </div>
@@ -199,7 +199,7 @@ export default function Statistics() {
           <div className="flex justify-center mb-4 md:mb-6">
             <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-cyber-accent to-cyber-accent-secondary rounded-full"></div>
           </div>
-          <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto px-2">
+          <p className="text-xs sm:text-sm md:text-base text-gray-300 max-w-md mx-auto px-2">
             Driving excellence in cybersecurity, research, and software development
           </p>
         </div>

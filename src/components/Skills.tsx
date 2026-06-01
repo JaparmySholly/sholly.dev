@@ -119,7 +119,7 @@ function SkillCard({
     >
       <div className="group h-full">
         <div
-          className={`relative h-full p-8 rounded-xl border backdrop-blur-sm transition-all duration-500 ease-smooth ${colorStyle.border} ${colorStyle.hover} ${colorStyle.glow} bg-cyber-card hover:bg-cyber-card-lg overflow-hidden`}
+          className={`relative h-full p-6 rounded-xl border backdrop-blur-sm transition-all duration-500 ease-smooth ${colorStyle.border} ${colorStyle.hover} ${colorStyle.glow} bg-cyber-card hover:bg-cyber-card-lg overflow-hidden`}
         >
           {/* Background gradient effect */}
           <div
@@ -189,12 +189,20 @@ function SkillCard({
 
 export default function Skills() {
   return (
-    <section id="skills" className="section px-4 md:px-0">
+    <section id="skills" className="section py-16 md:py-24 px-4 md:px-0">
       {/* Header */}
       <AnimatedSection animation="slide-up">
-        <div className="mb-12 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">Skills & Expertise</h2>
-          <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-cyber-accent to-cyber-accent-secondary rounded-full"></div>
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            Skills & Expertise
+          </h2>
+
+          <p className="text-gray-400 max-w-md mx-auto text-xs sm:text-sm md:text-base leading-relaxed mb-6">
+            Combining cybersecurity expertise, software engineering, and research excellence to deliver secure 
+            and impactful solutions.
+          </p>
+
+          <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-cyber-accent to-cyber-accent-secondary rounded-full mx-auto"></div>
         </div>
       </AnimatedSection>
 

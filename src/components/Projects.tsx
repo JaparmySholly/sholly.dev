@@ -86,7 +86,7 @@ function ProjectCard({
     <AnimatedSection animation="slide-up" delay={index * 100}>
       <div className="group h-full">
         <div
-          className={`relative h-full p-8 rounded-2xl border backdrop-blur-md transition-all duration-500 ease-smooth ${colorConfig.border} ${colorConfig.glow} bg-cyber-card hover:bg-cyber-card-lg`}
+          className={`relative h-full p-6 rounded-2xl border backdrop-blur-md transition-all duration-500 ease-smooth ${colorConfig.border} ${colorConfig.glow} bg-cyber-card hover:bg-cyber-card-lg`}
         >
           {/* Content Wrapper with proper z-index */}
           <div className="relative z-10">
@@ -186,7 +186,7 @@ function ProjectCard({
 
 export default function Projects() {
   return (
-    <section id="projects" className="section relative px-4 md:px-0">
+    <section id="projects" className="section py-16 md:py-24 relative px-4 md:px-0">
       {/* Subtle background effects */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-1/4 right-1/3 w-96 h-96 bg-cyber-accent/5 rounded-full blur-3xl"></div>
@@ -195,12 +195,17 @@ export default function Projects() {
 
       {/* Header */}
       <AnimatedSection animation="slide-up">
-        <div className="mb-12 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">Featured Projects</h2>
-          <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-cyber-accent to-cyber-accent-secondary rounded-full"></div>
-          <p className="text-gray-400 mt-4 md:mt-6 max-w-2xl text-sm md:text-lg">
-            Showcasing my work in cybersecurity, threat detection, and secure system development.
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            Featured Projects
+          </h2>
+
+          <p className="text-gray-400 max-w-md mx-auto text-xs sm:text-sm md:text-base leading-relaxed mb-6">
+            A collection of cybersecurity, software development, and research-focused
+            projects demonstrating practical problem-solving, innovation, and technical expertise.
           </p>
+
+          <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-cyber-accent to-cyber-accent-secondary rounded-full mx-auto"></div>
         </div>
       </AnimatedSection>
 

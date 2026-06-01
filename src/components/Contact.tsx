@@ -72,19 +72,23 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="section px-4 md:px-0">
+    <section id="contact" className="section py-16 md:py-24 px-4 md:px-0">
       <AnimatedSection animation="slide-up">
-        <div className="max-w-2xl mx-auto w-full">
-          <div className="mb-8 md:mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">Get In Touch</h2>
-            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-cyber-accent to-cyber-accent-secondary rounded-full"></div>
-            <p className="text-gray-400 mt-4 md:mt-6 text-sm md:text-base">
+        <div className="max-w-md mx-auto w-full">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">
+              Get In Touch
+            </h2>
+
+            <p className="text-gray-400 mt-4 md:mt-6 max-w-md mx-auto text-xs sm:text-sm md:text-base leading-relaxed mb-6">
               Have a project in mind or just want to say hello? I'd love to hear
               from you. Feel free to reach out!
             </p>
+
+            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-cyber-accent to-cyber-accent-secondary rounded-full mx-auto"></div>
           </div>
 
-          <Card className="p-6 sm:p-8 md:p-12">
+          <Card className="p-6 md:p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label
@@ -101,7 +105,7 @@ export default function Contact() {
                   onChange={handleChange}
                   placeholder="John Doe"
                   required
-                  className="w-full px-4 sm:px-5 py-3 sm:py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm sm:text-base"
+                  className="w-full px-4 py-2.5 sm:py-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm sm:text-base"
                 />
               </div>
 
@@ -120,7 +124,7 @@ export default function Contact() {
                   onChange={handleChange}
                   placeholder="john@example.com"
                   required
-                  className="w-full px-4 sm:px-5 py-3 sm:py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm sm:text-base"
+                  className="w-full px-4 py-2.5 sm:py-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm sm:text-base"
                 />
               </div>
 
@@ -139,7 +143,7 @@ export default function Contact() {
                   placeholder="Your message here..."
                   rows={5}
                   required
-                  className="w-full px-4 sm:px-5 py-3 sm:py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none text-sm sm:text-base"
+                  className="w-full px-4 py-2.5 sm:py-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none text-sm sm:text-base"
                 />
               </div>
 
@@ -158,8 +162,8 @@ export default function Contact() {
               <Button
                 type="submit"
                 variant="primary"
-                size="lg"
-                className="w-full text-sm sm:text-base py-3 sm:py-4"
+                size="md"
+                className="w-full text-xs sm:text-sm py-2.5 sm:py-3"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? 'Sending...' : 'Send Message'}

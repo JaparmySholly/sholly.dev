@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 export default function ProfileImage() {
   return (
     <motion.div
-      className="mb-8 md:mb-10 flex justify-center"
+      className="mb-4 flex justify-center"
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{
@@ -51,9 +51,8 @@ export default function ProfileImage() {
             priority
             className="
               w-32 h-32
-              sm:w-40 sm:h-40
-              md:w-44 md:h-44
-              lg:w-52 lg:h-52
+              md:w-40 md:h-40
+              lg:w-48 lg:h-48
               object-cover
             "
           />
