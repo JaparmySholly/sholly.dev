@@ -1,36 +1,33 @@
 'use client';
 
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import AnimatedSection from './AnimatedSection';
+import { getBlogPosts } from '@/lib/blog';
+import type { BlogPostWithReadingTime } from '@/types/blog';
 
 export default function Blog() {
-  const posts = [
-    {
-      title: 'How I Built an AI Malware Detection System',
-      date: 'August 2025',
-      category: 'Cybersecurity',
-      excerpt:
-        'A walkthrough of designing a hybrid malware detection system using machine learning and signature matching.',
-    },
-    {
-      title: 'Understanding Phishing Attacks in 2025',
-      date: 'July 2025',
-      category: 'Security Awareness',
-      excerpt:
-        'Common phishing techniques and practical steps to protect yourself and your organization.',
-    },
-    {
-      title: 'Using Python for DFIR Automation',
-      date: 'June 2025',
-      category: 'Digital Forensics',
-      excerpt:
-        'Automating incident response and forensic analysis using Python scripts and open-source tools.',
-    },
-  ];
+  const [posts, setPosts] = useState<BlogPostWithReadingTime[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const data = await getBlogPosts();
+      setPosts(data.slice(0, 3)); // Show only 3 most recent
+      setLoading(false);
+    };
+    fetchPosts();
+  }, []);
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+  };
 
   return (
     <section id="blog" className="section">
       <AnimatedSection animation="slide-up">
-        <div className="text-center mb-12">
+        <div className="text-center mb-6">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             Blog & Insights
           </h2>
@@ -45,28 +42,51 @@ export default function Blog() {
       </AnimatedSection>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {posts.map((post) => (
-          <div
-            key={post.title}
-            className="glass rounded-2xl p-6 border border-cyber-accent/10 hover:border-cyber-accent/30 transition-all"
-          >
-            <span className="text-cyber-accent text-sm">
-              {post.category}
-            </span>
+        {loading ? (
+          // Skeleton loading state with same styling
+          Array(3).fill(0).map((_, i) => (
+            <div
+              key={i}
+              className="glass rounded-2xl p-6 border border-cyber-accent/10 animate-pulse"
+            >
+              <div className="h-4 w-20 bg-cyber-accent/20 rounded"></div>
+              <div className="h-6 bg-cyber-accent/20 rounded mt-3 mb-3"></div>
+              <div className="space-y-2">
+                <div className="h-4 bg-cyber-accent/20 rounded"></div>
+                <div className="h-4 w-5/6 bg-cyber-accent/20 rounded"></div>
+              </div>
+              <div className="h-3 w-16 bg-cyber-accent/20 rounded mt-4"></div>
+            </div>
+          ))
+        ) : posts.length > 0 ? (
+          posts.map((post) => (
+            <Link
+              key={post.id}
+              href={`/blog/${post.slug}`}
+              className="glass rounded-2xl p-6 border border-cyber-accent/10 hover:border-cyber-accent/30 transition-all cursor-pointer group"
+            >
+              <span className="text-cyber-accent text-sm">
+                {post.category}
+              </span>
 
-            <h3 className="text-xl font-semibold mt-3 mb-3">
-              {post.title}
-            </h3>
+              <h3 className="text-xl font-semibold mt-3 mb-3 group-hover:text-cyber-accent-secondary transition-colors">
+                {post.title}
+              </h3>
 
-            <p className="text-gray-400 text-sm mb-4">
-              {post.excerpt}
-            </p>
+              <p className="text-gray-400 text-sm mb-4">
+                {post.excerpt}
+              </p>
 
-            <p className="text-xs text-gray-500">
-              {post.date}
-            </p>
+              <p className="text-xs text-gray-500">
+                {formatDate(post.created_at)}
+              </p>
+            </Link>
+          ))
+        ) : (
+          <div className="col-span-full text-center text-gray-400">
+            No blog posts published yet.
           </div>
-        ))}
+        )}
       </div>
     </section>
   );

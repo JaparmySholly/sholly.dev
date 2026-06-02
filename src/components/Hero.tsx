@@ -49,7 +49,7 @@ export default function Hero() {
         </h1>
 
         <p className="text-sm sm:text-base md:text-lg text-gray-300 mb-3 md:mb-4 leading-relaxed max-w-2xl mx-auto">
-          Cybersecurity Engineer • Academic Researcher • Software Developer
+          Cybersecurity Engineer • Software Developer
         </p>
 
         <p className="text-xs sm:text-sm md:text-base text-gray-400 mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed">

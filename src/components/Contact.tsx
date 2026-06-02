@@ -4,7 +4,8 @@ import { useState } from 'react';
 import Button from './Button';
 import Card from './Card';
 import AnimatedSection from './AnimatedSection';
-import { supabase } from '@/lib/supabase';
+import posthog from 'posthog-js';
+
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -32,19 +33,23 @@ export default function Contact() {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase
-        .from('contact_messages')
-        .insert([
-          {
-            name: formData.name,
-            email: formData.email,
-            message: formData.message,
-          },
-        ]);
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-      if (error) {
-        throw error;
+      if (!response.ok) {
+        throw new Error('Failed to send');
       }
+
+      posthog.capture('contact_form_submitted', {
+        source: 'portfolio_contact_form',
+      });
+
+      setSubmitStatus('success');
 
       setSubmitStatus('success');
       setFormData({
