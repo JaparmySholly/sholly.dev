@@ -80,7 +80,7 @@ export default function Contact() {
     <section id="contact" className="section py-16 md:py-24 px-4 md:px-0">
       <AnimatedSection animation="slide-up">
         <div className="max-w-md mx-auto w-full">
-          <div className="text-center mb-12 md:mb-16">
+          <div className="text-center mb-2 md:mb-4">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">
               Get In Touch
             </h2>

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Button from './Button';
+import { usePathname } from 'next/navigation';
 import posthog from 'posthog-js';
 import { slideDownVariants, floatingVariants, containerVariants, itemVariants } from './animations';
 
@@ -11,13 +12,34 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
   const navItems = [
-    { label: 'Home', href: '/#home', id: 'home' },
-    { label: 'Skills', href: '/#skills', id: 'skills' },
-    { label: 'Projects', href: '/#projects', id: 'projects' },
-    { label: 'Blog', href: '/#blog', id: 'blog' },
-    { label: 'Contact', href: '/#contact', id: 'contact' },
+    {
+      label: 'Home',
+      href: pathname === '/' ? '#home' : '/#home',
+      id: 'home',
+    },
+    {
+      label: 'Skills',
+      href: pathname === '/' ? '#skills' : '/#skills',
+      id: 'skills',
+    },
+    {
+      label: 'Projects',
+      href: pathname === '/' ? '#projects' : '/#projects',
+      id: 'projects',
+    },
+    {
+      label: 'Blog',
+      href: pathname === '/' ? '#blog' : '/#blog',
+      id: 'blog',
+    },
+    {
+      label: 'Contact',
+      href: pathname === '/' ? '#contact' : '/#contact',
+      id: 'contact',
+    },
   ];
 
   // Track active section on scroll
@@ -87,7 +109,7 @@ export default function Navbar() {
               whileHover={{ scale: 1.05 }}
               transition={{ type: 'spring', stiffness: 400, damping: 10 }}
               onClick={() => {
-                window.location.href = '/#home';
+                window.location.assign('/');
               }}
             >
               <motion.div
@@ -243,7 +265,13 @@ export default function Navbar() {
               <motion.a
                 key={item.label}
                 href={item.href}
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => {
+                  setIsOpen(false);
+
+                  setTimeout(() => {
+                    window.location.href = item.href;
+                  }, 150);
+                }}
                 className={`flex items-center px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg text-sm font-medium transition-all duration-300 relative group ${
                   activeSection === item.id
                     ? 'text-cyber-accent bg-cyber-accent/10'

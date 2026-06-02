@@ -195,7 +195,7 @@ export default function Projects() {
 
       {/* Header */}
       <AnimatedSection animation="slide-up">
-        <div className="text-center mb-12 md:mb-16">
+        <div className="text-center mb-2 md:mb-4">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">
             Featured Projects
           </h2>
