@@ -15,6 +15,11 @@ export const metadata: Metadata = {
     "Modern cybersecurity engineer portfolio. Threat hunting, DFIR, SOC operations, and secure system development.",
   keywords:
     "cybersecurity, engineer, portfolio, threat hunting, DFIR, SOC",
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
+    shortcut: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
