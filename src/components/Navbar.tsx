@@ -14,11 +14,25 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
+  // Set active section based on pathname for non-home pages
+  useEffect(() => {
+    if (pathname === '/about') {
+      setActiveSection('about');
+    } else if (pathname.startsWith('/blog')) {
+      setActiveSection('blog');
+    }
+  }, [pathname]);
+
   const navItems = [
     {
       label: 'Home',
       href: pathname === '/' ? '#home' : '/#home',
       id: 'home',
+    },
+    {
+      label: 'About',
+      href: '/about',
+      id: 'about',
     },
     {
       label: 'Skills',

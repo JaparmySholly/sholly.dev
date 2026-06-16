@@ -37,11 +37,11 @@ const projects: Project[] = [
   },
   {
     id: 'soc-dashboard',
-    title: 'SOC Monitoring Dashboard',
+    title: 'IoT Threat Detection & Incident Response Platform',
     description:
-      'Comprehensive security event monitoring and analytics platform with real-time alerts.',
+      'Prototype SOC platform for detecting, classifying, investigating, and responding to IoT botnet activity through real-time monitoring, forensic evidence collection, automated reporting, and analyst dashboards.',
     thumbnail: undefined,
-    tags: ['Next.js', 'TypeScript', 'Analytics'],
+    tags: ['Python', 'Network Security', 'DFIR'],
     link: '#',
     github: '#',
   },
