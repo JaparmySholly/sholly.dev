@@ -45,7 +45,7 @@ export default function AboutPage() {
                     <Button variant="primary" size="lg">View Projects</Button>
                   </a>
                   <a href="/#contact">
-                    <Button variant="outline" size="lg"> Me</Button>
+                    <Button variant="outline" size="lg">Hire Me</Button>
                   </a>
                 </div>
               </AnimatedSection>
