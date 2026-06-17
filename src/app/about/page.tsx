@@ -35,10 +35,10 @@ export default function AboutPage() {
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
                   About <span className="gradient-text">Me</span>
                 </h1>
-                <p className="text-xl md:text-2xl text-cyber-accent font-semibold mb-6">
+                <p className="text-xl md:text-xl text-cyber-accent font-semibold mb-6">
                   Cybersecurity Engineer | Researcher | Developer
                 </p>
-                  <p className="text-gray-300 text-base md:text-lg lg:text-xl mb-10 leading-relaxed max-w-2xl mx-auto">               I design and develop intelligent security solutions—from AI-powered malware detection systems to IoT threat monitoring platforms—while exploring the intersection of cybersecurity, automation, and software engineering.
+                  <p className="text-gray-300 text-base md:text-lg lg:text-lg mb-10 leading-relaxed max-w-2xl mx-auto">               I design and develop intelligent security solutions—from AI-powered malware detection systems to IoT threat monitoring platforms—while exploring the intersection of cybersecurity, automation, and software engineering.
                 </p>
                 <div className="flex flex-wrap gap-5 justify-center">
                   <a href="/#projects">
@@ -64,7 +64,7 @@ export default function AboutPage() {
                 <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
                   <span className="text-cyber-accent"></span> My Journey
                 </h2>
-                <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
+                <div className="space-y-6 text-justify text-gray-300 text-lg leading-relaxed">
                   <p>
                     I am a First-Class Cybersecurity graduate and engineer dedicated to building, breaking, and securing digital systems. With over three years of hands-on experience spanning vulnerability assessment, penetration testing, and secure software development, I sit at the intersection of robust defense and intelligent automation.
                   </p>
