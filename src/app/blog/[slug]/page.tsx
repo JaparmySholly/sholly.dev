@@ -10,7 +10,7 @@ import BackgroundOrbs from '@/components/BackgroundOrbs';
 import PageWrapper from '@/components/PageWrapper';
 import RelatedPosts from '@/components/RelatedPosts';
 import ReactMarkdown from 'react-markdown';
-import { getBlogPostBySlug, getRelatedPosts } from '@/lib/blog';
+import { getBlogPostBySlug, getRelatedPosts, incrementViews } from '@/lib/blog';
 import type { BlogPostWithReadingTime } from '@/types/blog';
 
 export default function ArticlePage() {
@@ -22,6 +22,7 @@ export default function ArticlePage() {
   const [post, setPost] = useState<BlogPostWithReadingTime | null>(null);
   const [relatedPosts, setRelatedPosts] = useState<BlogPostWithReadingTime[]>([]);
   const [loading, setLoading] = useState(true);
+  const [readingProgress, setReadingProgress] = useState(0);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -32,7 +33,23 @@ export default function ArticlePage() {
         return;
       }
 
-      setPost(postData);
+      // Check if this post has already been viewed during this user's session/device
+      const viewKey = `viewed-${slug}`;
+      const hasViewed = localStorage.getItem(viewKey);
+      let finalViews = postData.views || 0;
+
+      if (!hasViewed) {
+        const updatedViews = await incrementViews(slug);
+        if (updatedViews !== null) {
+          localStorage.setItem(viewKey, 'true');
+          finalViews = updatedViews;
+        }
+      }
+
+      setPost({
+        ...postData,
+        views: finalViews,
+      });
 
       // Track blog_opened event
       posthog?.capture('blog_opened', {
@@ -74,6 +91,32 @@ export default function ArticlePage() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [post, posthog]);
+
+  // Monitor scroll height to compute reading progress percentage
+  useEffect(() => {
+    if (!post) return;
+
+    const handleProgressScroll = () => {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollHeight <= 0) {
+        setReadingProgress(0);
+        console.log('Reading progress bar: scrollHeight <= 0', scrollHeight);
+        return;
+      }
+      const scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      const progress = (scrollTop / scrollHeight) * 100;
+      console.log('Reading progress bar scroll status:', {
+        scrollTop,
+        scrollHeight,
+        calculatedProgress: progress,
+      });
+      setReadingProgress(Math.min(100, Math.max(0, progress)));
+    };
+
+    window.addEventListener('scroll', handleProgressScroll);
+    handleProgressScroll(); // Set initial layout progress
+    return () => window.removeEventListener('scroll', handleProgressScroll);
+  }, [post]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -128,6 +171,14 @@ export default function ArticlePage() {
 
   return (
     <>
+      {/* Reading Progress Bar */}
+      <div className="fixed top-0 left-0 right-0 h-1 z-[9999] bg-transparent">
+        <div 
+          className="h-full bg-gradient-to-r from-cyber-accent via-cyber-accent-tertiary to-cyber-accent-secondary transition-all duration-75 ease-out"
+          style={{ width: `${readingProgress}%` }}
+        />
+      </div>
+
       <BackgroundOrbs className="fixed top-0 left-0 w-full h-full pointer-events-none" />
       <Navbar />
       <PageWrapper>
@@ -149,6 +200,8 @@ export default function ArticlePage() {
                 <span>{post.reading_time} min read</span>
                 <span>•</span>
                 <span className="text-cyber-accent">{post.category}</span>
+                <span>•</span>
+                <span className="flex items-center gap-1">👁 {post.views || 0} views</span>
               </div>
 
               {/* Share Button */}
@@ -185,6 +238,7 @@ export default function ArticlePage() {
                   max-w-none
                   prose-headings:text-white
                   prose-p:text-gray-300
+                  prose-p:text-justify
                   prose-strong:text-white
                   prose-a:text-cyber-accent
                   prose-li:text-gray-300
@@ -193,8 +247,17 @@ export default function ArticlePage() {
                   prose-code:text-cyber-accent
                 "
               >
-                <ReactMarkdown>
-                  {post.content}
+                <ReactMarkdown
+                  components={{
+                    img: ({ node, ...props }) => (
+                      <img
+                        {...props}
+                        className="rounded-xl max-w-full h-auto my-8 mx-auto object-cover border border-cyber-accent/10 shadow-lg"
+                      />
+                    ),
+                  }}
+                >
+                  {post.content.replace(/!\s+\[/g, '![').replace(/\]\s+\(/g, '](')}
                 </ReactMarkdown>
               </div>
             </div>

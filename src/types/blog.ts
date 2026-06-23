@@ -9,6 +9,7 @@ export interface BlogPost {
   published: boolean;
   created_at: string;
   updated_at: string;
+  views: number;
 }
 
 export interface BlogPostInsert {
@@ -19,6 +20,7 @@ export interface BlogPostInsert {
   category: string;
   cover_image?: string | null;
   published?: boolean;
+  views?: number;
 }
 
 export interface BlogPostUpdate extends Partial<BlogPostInsert> {

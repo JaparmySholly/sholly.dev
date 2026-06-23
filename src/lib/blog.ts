@@ -229,3 +229,26 @@ export const getBlogCategories = async (): Promise<string[]> => {
   const categories = data?.map(post => post.category) || [];
   return [...new Set(categories)].sort();
 };
+
+// Increment view count by slug atomically using RPC and fetch latest views count
+export const incrementViews = async (slug: string): Promise<number | null> => {
+  const { error } = await supabase.rpc('increment_views', { post_slug: slug });
+  
+  if (error) {
+    console.error('Error incrementing views:', error);
+    return null;
+  }
+
+  const { data, error: fetchError } = await supabase
+    .from('blog_posts')
+    .select('views')
+    .eq('slug', slug)
+    .single();
+
+  if (fetchError || !data) {
+    console.error('Error fetching updated views count:', fetchError);
+    return null;
+  }
+
+  return data.views;
+};
