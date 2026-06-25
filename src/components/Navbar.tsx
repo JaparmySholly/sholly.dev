@@ -45,6 +45,11 @@ export default function Navbar() {
       id: 'projects',
     },
     {
+      label: 'Certifications',
+      href: pathname === '/' ? '#certifications' : '/#certifications',
+      id: 'certifications',
+    },
+    {
       label: 'Blog',
       href: pathname === '/' ? '#blog' : '/#blog',
       id: 'blog',

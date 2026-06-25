@@ -63,23 +63,49 @@ export default function Blog() {
             <Link
               key={post.id}
               href={`/blog/${post.slug}`}
-              className="glass rounded-2xl p-6 border border-cyber-accent/10 hover:border-cyber-accent/30 transition-all cursor-pointer group"
+              className="glass rounded-2xl border border-cyber-accent/10 hover:border-cyber-accent/30 transition-all duration-300 cursor-pointer group overflow-hidden flex flex-col h-full bg-cyber-card hover:bg-cyber-card-lg"
             >
-              <span className="text-cyber-accent text-sm">
-                {post.category}
-              </span>
+              {/* Cover Image or Thematic Fallback Visual */}
+              {post.cover_image ? (
+                <div className="relative h-48 w-full overflow-hidden border-b border-cyber-accent/10">
+                  <img
+                    src={post.cover_image}
+                    alt={post.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-cyber-dark/80 to-transparent"></div>
+                </div>
+              ) : (
+                <div className="relative h-48 w-full overflow-hidden bg-gradient-to-br from-cyber-darker via-cyber-dark to-cyber-darker border-b border-cyber-accent/15 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-subtle-grid opacity-20"></div>
+                  <div className="absolute inset-0 bg-gradient-radial-cyan opacity-35"></div>
+                  <span className="text-[10px] font-mono font-bold text-cyber-accent bg-cyber-accent/10 border border-cyber-accent/20 px-3 py-1 rounded tracking-wider uppercase select-none z-10">
+                    {post.category || 'Security Log'}
+                  </span>
+                </div>
+              )}
 
-              <h3 className="text-xl font-semibold mt-3 mb-3 group-hover:text-cyber-accent-secondary transition-colors">
-                {post.title}
-              </h3>
+              {/* Text Area padding */}
+              <div className="p-6 flex flex-col flex-1 justify-between">
+                <div>
+                  <span className="text-cyber-accent font-mono text-xs tracking-wider uppercase">
+                    [ {post.category} ]
+                  </span>
 
-              <p className="text-gray-400 text-sm mb-4">
-                {post.excerpt}
-              </p>
+                  <h3 className="text-xl font-bold mt-2.5 mb-3 text-white group-hover:text-cyber-accent-secondary transition-colors line-clamp-2 leading-snug">
+                    {post.title}
+                  </h3>
 
-              <p className="text-xs text-gray-500">
-                {formatDate(post.created_at)}
-              </p>
+                  <p className="text-gray-400 text-sm mb-4 line-clamp-3 leading-relaxed">
+                    {post.excerpt}
+                  </p>
+                </div>
+
+                <div className="flex items-center justify-between text-xs text-gray-500 pt-2 border-t border-white/5">
+                  <span>{formatDate(post.created_at)}</span>
+                  <span className="font-mono text-cyber-accent/70">{post.reading_time} min read</span>
+                </div>
+              </div>
             </Link>
           ))
         ) : (

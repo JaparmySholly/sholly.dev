@@ -11,50 +11,28 @@ interface ProfileImageProps {
 export default function ProfileImage({ size = 'md', className = '' }: ProfileImageProps) {
   const sizeClasses = {
     sm: 'w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32',
-    md: 'w-32 h-32 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-52 lg:h-52',
+    md: 'w-32 h-32 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-56 lg:h-56', // Increased desktop sizing by 10%
     lg: 'w-40 h-40 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-72 lg:h-72',
     xl: 'w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-[450px] lg:h-[450px]',
   };
 
   return (
     <motion.div
-      className={`mb-4 md:mb-6 flex justify-center ${className}`}
-      initial={{ opacity: 0, scale: 0.85 }}
+      className={`flex justify-center ${className}`}
+      initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{
-        duration: 0.6,
+        duration: 0.5,
         type: 'spring',
-        stiffness: 100,
+        stiffness: 90,
       }}
     >
       <div className="relative">
-        {/* Glow */}
-        <div className="absolute -inset-3 rounded-full bg-gradient-to-r from-cyber-accent via-cyber-accent-secondary to-cyber-accent-tertiary opacity-20 blur-xl"></div>
+        {/* Subtle Blue/Purple Glow behind the image */}
+        <div className="absolute -inset-2 rounded-full bg-gradient-to-tr from-cyber-accent-tertiary to-cyber-accent-secondary opacity-35 blur-xl pointer-events-none"></div>
 
-        {/* Outer ring */}
-        <motion.div
-          className="absolute -inset-2 md:-inset-4 rounded-full border border-cyber-accent/40"
-          animate={{ rotate: 360 }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-        />
-
-        {/* Second ring */}
-        <motion.div
-          className="absolute -inset-4 md:-inset-8 rounded-full border border-white/20"
-          animate={{ rotate: -360 }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-        />
-
-        {/* Image */}
-        <div className="relative overflow-hidden rounded-full border-4 border-white/80 bg-cyber-dark shadow-2xl shadow-cyber-accent/20">
+        {/* Image wrapper with thin 2px white border */}
+        <div className="relative overflow-hidden rounded-full border-2 border-white bg-cyber-dark shadow-2xl">
           <Image
             src="/sholly.jpg"
             alt="Sholly"
@@ -64,10 +42,6 @@ export default function ProfileImage({ size = 'md', className = '' }: ProfileIma
             className={`${sizeClasses[size]} object-cover`}
           />
         </div>
-
-        {/* Corner accents */}
-        <div className="absolute -top-2 -right-2 w-5 h-5 md:w-8 md:h-8 border-t-2 border-r-2 border-white rounded-tr-lg" />
-        <div className="absolute -bottom-2 -left-2 w-5 h-5 md:w-8 md:h-8 border-b-2 border-l-2 border-white rounded-bl-lg" />
       </div>
     </motion.div>
   );
