@@ -38,8 +38,8 @@ export default function Hero() {
         animation="fade-in"
         className="w-full text-center"
       >
-        {/* Main Grid: items-stretch aligns column heights to match on desktop */}
-        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+        {/* Main Grid: items-stretch aligns column heights, gap-4 narrows the column distance */}
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-4 items-stretch">
           
           {/* Left Column: Operator Centered Identity Block (6 cols, centered alignment) */}
           <div className="lg:col-span-6 flex flex-col items-center text-center">
@@ -96,9 +96,9 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Column: Terminal console (6 cols, aligned top-to-top with Left Column) */}
+          {/* Right Column: Terminal console (6 cols, aligned top-to-top, narrower by 8-10%, aligned closer to left) */}
           <div className="lg:col-span-6 w-full mt-0 lg:h-full flex flex-col">
-            <div className="relative w-full h-[350px] sm:h-[400px] lg:h-full flex flex-col">
+            <div className="relative w-full h-[350px] sm:h-[400px] lg:h-full flex flex-col lg:max-w-[90%] lg:mr-auto">
               <div className="absolute -inset-1.5 rounded-xl bg-gradient-to-r from-cyber-accent to-cyber-accent-secondary opacity-15 blur-lg pointer-events-none"></div>
               <div className="relative h-full flex flex-col">
                 <Terminal />

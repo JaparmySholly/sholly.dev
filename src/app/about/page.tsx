@@ -38,7 +38,7 @@ export default function AboutPage() {
                 <p className="text-xl md:text-xl text-cyber-accent font-semibold mb-6">
                   Cybersecurity Engineer | Researcher | Developer
                 </p>
-                  <p className="text-gray-300 text-base md:text-lg lg:text-lg mb-10 leading-relaxed max-w-2xl mx-auto">               I design and develop intelligent security solutions—from AI-powered malware detection systems to IoT threat monitoring platforms—while exploring the intersection of cybersecurity, automation, and software engineering.
+                  <p className="text-gray-300 text-base md:text-lg lg:text-lg mb-10 leading-relaxed max-w-2xl mx-auto text-justify"> I design and develop intelligent security solutions—from AI-powered malware detection systems to IoT threat monitoring platforms—while exploring the intersection of cybersecurity, automation, and software engineering.
                 </p>
                 <div className="flex flex-wrap gap-5 justify-center">
                   <a href="/#projects">
