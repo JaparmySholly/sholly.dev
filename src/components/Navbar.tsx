@@ -44,11 +44,13 @@ export default function Navbar() {
       href: pathname === '/' ? '#projects' : '/#projects',
       id: 'projects',
     },
+    /*
     {
       label: 'Certifications',
       href: pathname === '/' ? '#certifications' : '/#certifications',
       id: 'certifications',
     },
+    */
     {
       label: 'Blog',
       href: pathname === '/' ? '#blog' : '/#blog',

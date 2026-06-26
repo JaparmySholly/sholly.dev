@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import Statistics from "@/components/Statistics";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
-import Certifications from "@/components/Certifications";
+// import Certifications from "@/components/Certifications";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import BackgroundOrbs from "@/components/BackgroundOrbs";
@@ -23,7 +23,7 @@ export default function Home() {
           <Statistics />
           <Skills />
           <Projects />
-          <Certifications />
+          {/* <Certifications /> */}
           <Blog />
           <Contact />
         </main>

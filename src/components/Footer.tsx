@@ -79,12 +79,14 @@ export default function Footer() {
                   Projects
                 </a>
 
+                {/* 
                 <a
                   href="#certifications"
                   className="text-gray-400 hover:text-cyber-accent transition-colors"
                 >
                   Certifications
                 </a>
+                */}
 
                 <a
                   href="#blog"
