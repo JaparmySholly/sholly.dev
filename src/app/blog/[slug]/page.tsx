@@ -9,6 +9,7 @@ import Footer from '@/components/Footer';
 import BackgroundOrbs from '@/components/BackgroundOrbs';
 import PageWrapper from '@/components/PageWrapper';
 import RelatedPosts from '@/components/RelatedPosts';
+import SubscriptionCard from '@/components/SubscriptionCard';
 import ReactMarkdown from 'react-markdown';
 import { getBlogPostBySlug, getRelatedPosts, incrementViews } from '@/lib/blog';
 import type { BlogPostWithReadingTime } from '@/types/blog';
@@ -260,6 +261,13 @@ export default function ArticlePage() {
                   {post.content.replace(/!\s+\[/g, '![').replace(/\]\s+\(/g, '](')}
                 </ReactMarkdown>
               </div>
+            </div>
+          </section>
+
+          {/* Subscription Section */}
+          <section className="section py-12 border-t border-cyber-accent/10">
+            <div className="max-w-3xl mx-auto">
+              <SubscriptionCard />
             </div>
           </section>
 
